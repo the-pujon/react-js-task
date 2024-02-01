@@ -11,20 +11,15 @@ const Home = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data)
-        console.log(data[2].show.image)
         setShowDetails(data);
-        data.map((d)=>{
-            console.log(d.show.image?.original)
-        })
       });
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-2" >
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2" >
       {showDetails.length > 0 &&
         showDetails.map((details, i) => (
-          <Link className="hover:-translate-y-2 hover:shadow-lg shadow-md transition-all duration-200" key={i}>
+          <Link to={`details/${details?.show?.id}`} className="hover:-translate-y-2 hover:shadow-lg shadow-md transition-all duration-200" key={i}>
             <TVShowCard show={details.show} />
           </Link>
         ))}
